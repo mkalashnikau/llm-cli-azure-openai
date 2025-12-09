@@ -58,17 +58,19 @@ az account set --subscription "your-subscription-id"
 
 ### Deploy Azure OpenAI Resources
 
-The deployment script creates an Azure OpenAI account and model deployment:
+The deployment script creates an Azure OpenAI account and model deployment. Available in both Bash and PowerShell:
+
+**Using Bash (Linux/macOS/WSL):**
 
 ```bash
 # Make the script executable
-chmod +x infra/deploy_azure_infra.sh
+chmod +x infra/scripts/deploy_infra.sh
 
 # Deploy with default values
-./infra/deploy_azure_infra.sh
+./infra/scripts/deploy_infra.sh
 
 # Or customize the deployment
-./infra/deploy_azure_infra.sh \
+./infra/scripts/deploy_infra.sh \
   -g my-resource-group \
   -n my-openai-account \
   -l eastus \
@@ -76,21 +78,39 @@ chmod +x infra/deploy_azure_infra.sh
   -m gpt-4
 
 # View all options
-./infra/deploy_azure_infra.sh --help
+./infra/scripts/deploy_infra.sh --help
+```
+
+**Using PowerShell (Windows/Linux/macOS):**
+
+```powershell
+# Deploy with default values
+./infra/scripts/Deploy-Infra.ps1
+
+# Or customize the deployment
+./infra/scripts/Deploy-Infra.ps1 `
+  -ResourceGroup "my-resource-group" `
+  -AccountName "my-openai-account" `
+  -Location "eastus" `
+  -DeploymentName "gpt-4-deployment" `
+  -ModelName "gpt-4"
+
+# View all options
+./infra/scripts/Deploy-Infra.ps1 -Help
 ```
 
 ### Deployment Options
 
 | Option | Environment Variable | Default | Description |
 |--------|---------------------|---------|-------------|
-| `-g, --resource-group` | `RESOURCE_GROUP` | `rg-default` | Azure resource group name |
-| `-l, --location` | `LOCATION` | `GermanyWestCentral` | Azure region |
-| `-n, --account-name` | `ACCOUNT_NAME` | `llm-oai` | OpenAI account name |
-| `-d, --deployment-name` | `DEPLOYMENT_NAME` | `gpt-4o-mini-deployment` | Model deployment name |
-| `-m, --model-name` | `MODEL_NAME` | `gpt-4o-mini` | OpenAI model to deploy |
-| `-v, --model-version` | `MODEL_VERSION` | `2024-07-18` | Model version |
-| `-s, --sku` | `SKU` | `S0` | SKU tier |
-| `-c, --capacity` | `SKU_CAPACITY` | `1` | SKU capacity |
+| `-g, --resource-group` / `-ResourceGroup` | `RESOURCE_GROUP` | `rg-default` | Azure resource group name |
+| `-l, --location` / `-Location` | `LOCATION` | `GermanyWestCentral` | Azure region |
+| `-n, --account-name` / `-AccountName` | `ACCOUNT_NAME` | `llm-oai` | OpenAI account name |
+| `-d, --deployment-name` / `-DeploymentName` | `DEPLOYMENT_NAME` | `gpt-4o-mini-deployment` | Model deployment name |
+| `-m, --model-name` / `-ModelName` | `MODEL_NAME` | `gpt-4o-mini` | OpenAI model to deploy |
+| `-v, --model-version` / `-ModelVersion` | `MODEL_VERSION` | `2024-07-18` | Model version |
+| `-s, --sku` / `-Sku` | `SKU` | `S0` | SKU tier |
+| `-c, --capacity` / `-SkuCapacity` | `SKU_CAPACITY` | `1` | SKU capacity |
 
 After deployment completes, the script will output the environment variables you need to set.
 
@@ -160,8 +180,9 @@ Exiting...
 ├── cmd/
 │   ├── chat.go       # Chat command implementation
 │   └── root.go       # Root command setup
-├── infra/
-│   └── deploy_azure_infra.sh  # Azure infrastructure deployment script
+├── infra/scripts/
+│   ├── deploy_infra.sh         # Azure deployment script (Bash)
+│   └── Deploy-Infra.ps1        # Azure deployment script (PowerShell)
 ├── main.go           # Application entry point
 ├── go.mod            # Go module dependencies
 ├── go.sum            # Dependency checksums
