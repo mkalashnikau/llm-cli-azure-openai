@@ -6,7 +6,7 @@ output "cognitive_account_endpoint" {
   value = azurerm_cognitive_account.this.endpoint
 }
 
-output "cognitive_accoint_primary_key" {
+output "cognitive_account_primary_key" {
   sensitive = true
   value = azurerm_cognitive_account.this.primary_access_key
 }

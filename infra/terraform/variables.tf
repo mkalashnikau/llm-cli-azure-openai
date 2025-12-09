@@ -1,5 +1,5 @@
 variable "cognitive_account_name" {
-  description = "Specifies the Cognitive Account name"
+  description = "Specifies the Cognitive Account name."
   type        = string
 }
 
@@ -9,7 +9,7 @@ variable "location" {
 }
 
 variable "resource_group_name" {
-  description = "The name of the resource group in which to create the openAI service."
+  description = "The name of the resource group in which to create the Cognitive Account."
   type        = string
 }
 
@@ -20,36 +20,31 @@ variable "create_resource_group" {
 }
 
 variable "cognitive_account_kind" {
-  description = "Kind of Cognitive Account"
+  description = "Kind of Cognitive Account."
   type        = string
 }
 
 variable "cognitive_account_sku_name" {
-  description = "SKU of Cognitive Account"
+  description = "SKU of Cognitive Account."
   type        = string
 }
 
 variable "cognitive_deployment_name" {
-  description = "Specifies the Cognitive Deployment name"
+  description = "Specifies the Cognitive Deployment name."
   type        = string
 }
 
 variable "cognitive_deployment_sku" {
-  description = "SKU of Cognitive Deployment"
+  description = "SKU of Cognitive Deployment."
   type        = string
   default     = "GlobalStandard"
 }
 
 variable "model" {
-  description = "Model configuration"
+  description = "Model configuration."
   type = object({
     format  = string
     name    = string
     version = string
   })
-  default = {
-    format  = "OpenAI"
-    name    = "gpt-4o-mini"
-    version = "2024-07-18"
-  }
 }
