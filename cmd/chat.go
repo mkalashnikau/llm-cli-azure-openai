@@ -58,14 +58,14 @@ var chatCmd = &cobra.Command{
 
 		ctx := context.Background()
 
-		fmt.Print("Enter initial prompt for LLM: ")
+		fmt.Print("Enter system prompt (defines LLM behavior): ")
 		initialPrompt, _ := reader.ReadString('\n')
 		initialPrompt = strings.TrimSpace(initialPrompt)
 
 		messages := []openai.ChatCompletionMessageParamUnion{
 			openai.SystemMessage(initialPrompt),
 		}
-		fmt.Println("Initial prompt received. Entering chat mode...")
+		fmt.Println("System prompt received. Entering chat mode...")
 
 		for {
 			fmt.Print("> ")
